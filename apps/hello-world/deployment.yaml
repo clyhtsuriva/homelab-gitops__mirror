@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+  namespace: hello-world
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        # Add a custom index page
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "echo '<html><body><h1>Hello from GitOps! 🚀</h1><p>Deployed via ArgoCD at '$(date)'</p></body></html>' > /usr/share/nginx/html/index.html"]
+...
