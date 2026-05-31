@@ -8,7 +8,7 @@ spec:
   project: default
   source:
     repoURL: https://git.adjutor.xyz/homelab-gitops.git
-    targetRevision: main
+    targetRevision: refs/heads/main
     path: apps/hello-world
   destination:
     server: https://kubernetes.default.svc
